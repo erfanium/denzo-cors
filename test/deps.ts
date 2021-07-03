@@ -1,5 +1,5 @@
-export { Denzo } from "https://raw.githubusercontent.com/irandeno/denzo/fab2803/mod.ts";
-export { createInject } from "https://raw.githubusercontent.com/irandeno/denzo/fab2803/utils/mod.ts";
+export { Denzo } from "https://raw.githubusercontent.com/irandeno/denzo/permissions/mod.ts";
+export { createInject } from "https://raw.githubusercontent.com/irandeno/denzo/permissions/utils/mod.ts";
 
 export {
   assert,
