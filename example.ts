@@ -3,10 +3,6 @@ import { cors } from "./mod.ts";
 
 const app = new Denzo();
 
-app.addHook("onRequest", (request) => {
-  console.log(request.method, request.url.pathname);
-});
-
 app.register(cors, { allowRootHooks: true });
 
 app.route({
