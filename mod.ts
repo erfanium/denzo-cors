@@ -66,7 +66,6 @@ function resolveOriginWrapper(origin: OriginFn) {
 }
 
 function vary(reply: DenzoReply, field: string) {
-  console.log("vary", field);
   let value = reply.headers.get("Vary") || "";
   value = Vary.append(value, field);
   if (value) {
