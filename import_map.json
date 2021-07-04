@@ -1,0 +1,5 @@
+{
+   "imports": {
+      "denzo/": "https://raw.githubusercontent.com/irandeno/denzo/main/"
+   }
+}

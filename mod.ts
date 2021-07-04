@@ -49,7 +49,7 @@ export const cors = createPlugin(
 
     denzo.route({
       method: "OPTIONS",
-      url: "/*", // todo core
+      url: "*",
       handler(request, reply) {
         if (!request.find(corsPreflightEnabledKey)) {
           return reply.status(404).send();
