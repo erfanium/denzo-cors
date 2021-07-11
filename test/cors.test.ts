@@ -16,7 +16,7 @@ function assertMatch(
 
 test("Should add cors headers  ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true });
+  denzo.register(cors, { allowParentHooks: true });
 
   denzo.route({
     method: "GET",
@@ -42,7 +42,7 @@ test("Should add cors headers  ", async () => {
 
 test("Should add cors headers (custom values) ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, {
+  denzo.register(cors, { allowParentHooks: true }, {
     origin: "example.com",
     methods: ["GET"],
     credentials: true,
@@ -108,7 +108,7 @@ test("Dynamic origin resolution (valid origin) ", async () => {
     return true;
   };
 
-  denzo.register(cors, { allowRootHooks: true }, { origin });
+  denzo.register(cors, { allowParentHooks: true }, { origin });
 
   denzo.route({
     method: "GET",
@@ -142,7 +142,7 @@ test("Dynamic origin resolution (not valid origin) ", async () => {
     return false;
   };
 
-  denzo.register(cors, { allowRootHooks: true }, { origin });
+  denzo.register(cors, { allowParentHooks: true }, { origin });
 
   denzo.route({
     method: "GET",
@@ -176,7 +176,7 @@ test("Dynamic origin resolution (errored) ", async () => {
     throw new Error("oh");
   };
 
-  denzo.register(cors, { allowRootHooks: true }, { origin });
+  denzo.register(cors, { allowParentHooks: true }, { origin });
 
   denzo.finalize();
   const inject = createInject(denzo);
@@ -190,7 +190,7 @@ test("Dynamic origin resolution (errored) ", async () => {
 
 test("Should reply 404 without cors headers other than `vary` when origin is false ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, {
+  denzo.register(cors, { allowParentHooks: true }, {
     origin: false,
     methods: ["GET"],
     credentials: true,
@@ -236,7 +236,7 @@ test("Should reply 404 without cors headers other than `vary` when origin is fal
 
 test("Server error if origin option is falsy but not false ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, { origin: "" });
+  denzo.register(cors, { allowParentHooks: true }, { origin: "" });
 
   denzo.finalize();
   const inject = createInject(denzo);
@@ -259,7 +259,7 @@ test("Server error if origin option is falsy but not false ", async () => {
 
 test("Allow only request from a specific origin ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, { origin: "other.io" });
+  denzo.register(cors, { allowParentHooks: true }, { origin: "other.io" });
 
   denzo.route({
     method: "GET",
@@ -288,7 +288,7 @@ test("Allow only request from a specific origin ", async () => {
 
 test("Allow only request from multiple specific origin ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, {
+  denzo.register(cors, { allowParentHooks: true }, {
     origin: ["other.io", "example.com"],
   });
 
@@ -333,7 +333,7 @@ test("Allow only request from multiple specific origin ", async () => {
 
 test("Allow only request from a specific origin using regex ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, {
+  denzo.register(cors, { allowParentHooks: true }, {
     origin: /^(example|other)\.com/,
   });
 
@@ -364,7 +364,7 @@ test("Allow only request from a specific origin using regex ", async () => {
 
 test("Disable preflight ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, { preflight: false });
+  denzo.register(cors, { allowParentHooks: true }, { preflight: false });
 
   denzo.route({
     method: "GET",
@@ -401,7 +401,7 @@ test("Disable preflight ", async () => {
 
 test("Should always add vary header to `Origin` by default ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true });
+  denzo.register(cors, { allowParentHooks: true });
 
   denzo.route({
     method: "GET",
@@ -463,7 +463,7 @@ test("Should always add vary header to `Origin` by default ", async () => {
 //   // Mock getHeader function
 //   denzo.decorateReply("getHeader", (name) => ["foo", "bar"]);
 
-//   denzo.register(cors, { allowRootHooks: true });
+//   denzo.register(cors, { allowParentHooks: true });
 
 //   denzo.route({
 //     method: "GET",
@@ -490,7 +490,7 @@ test("Should always add vary header to `Origin` by default ", async () => {
 
 test("Allow only request from with specific headers ", async () => {
   const denzo = new Denzo();
-  denzo.register(cors, { allowRootHooks: true }, {
+  denzo.register(cors, { allowParentHooks: true }, {
     allowedHeaders: "foo",
     exposedHeaders: "bar",
   });

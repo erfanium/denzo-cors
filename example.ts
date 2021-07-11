@@ -1,9 +1,9 @@
-import { Denzo } from "https://raw.githubusercontent.com/irandeno/denzo/fab2803/mod.ts";
+import { Denzo } from "denzo/mod.ts";
 import { cors } from "./mod.ts";
 
 const app = new Denzo();
 
-app.register(cors, { allowRootHooks: true });
+app.register(cors, { allowParentHooks: true });
 
 app.route({
   method: "GET",

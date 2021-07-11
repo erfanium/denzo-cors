@@ -44,7 +44,7 @@ export const cors = createPlugin(
     const config = Object.assign({}, defaultConfig, _config);
 
     denzo.addHook("onRequest", (req, reply) => onRequest(config, req, reply), {
-      scope: "root",
+      scope: "parent",
     });
 
     denzo.route({
