@@ -1,5 +1,4 @@
-export { Denzo } from "denzo/mod.ts";
-export { createInject } from "denzo/utils/mod.ts";
+export { createInject, Denzo } from "denzo";
 
 export {
   assert,

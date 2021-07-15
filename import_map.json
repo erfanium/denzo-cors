@@ -1,5 +1,5 @@
 {
   "imports": {
-    "denzo/": "https://raw.githubusercontent.com/irandeno/denzo/main/"
+    "denzo": "https://deno.land/x/denzo@0.1.0/mod.ts"
   }
 }
